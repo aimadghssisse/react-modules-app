@@ -4,15 +4,24 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useState } from 'react';
 import routes from './routes'
-import store from './store';
-import { Provider } from 'react-redux';
-
+import { profile, auth } from './actions'
+import { useSelector, useDispatch } from 'react-redux'
+import store from './store'
 function App() {
   const [currentTab, setCurrentTab] = useState('dashboard');
-  console.log(store.getState());
+  const dispatch =  useDispatch()
+  // console.log(store.getState());
+   //dispatch(auth())
+  // console.log(store.getState());
+
+  const profile1 = useSelector(state => state.global.profile1)
+    let handleClick = () => {
+      console.log(profile());
+      dispatch(profile())
+
+    }
   return (
-    <Provider store={store}>
-      <Router>
+    <Router>
       <div className="App">
         <header>
           <ul className="App-nav">
@@ -23,15 +32,20 @@ function App() {
             ))}
           </ul>
         </header>
+        <div>
+        { profile1 }
+        <br/>
+        <button onClick={handleClick}>
+        change state
+        </button>
+        </div>
           <div className="App-content">
           {routes.map(module => (
             <Route {...module} key={module.name} />
           ))}
         </div>
       </div>
-      </Router>
-    </Provider>
+    </Router>
   );
 }
-
 export default App;

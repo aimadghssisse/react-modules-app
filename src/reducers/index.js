@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import global from './global';
 
 const rootReducer = combineReducers({
-  global: global,
+  global,
 });
 
 export default rootReducer;
