@@ -14,7 +14,10 @@ function App() {
    //dispatch(auth())
   // console.log(store.getState());
 
-  const profile1 = useSelector(state => state.global.profile1)
+  const profile1 = useSelector(state => {
+    console.log(state);
+    return state.global.profile1
+  })
     let handleClick = () => {
       console.log(profile());
       dispatch(profile())
